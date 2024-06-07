@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.smallNote{
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  margin: 5% 0%;
+  position: absolute;
+  left: -20vw;
+}
+
+body{
+  background-image: url('../assets/blurry-gradient-haikei.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.smallNote h2, p{
+  margin: 5% 10%;
+}
