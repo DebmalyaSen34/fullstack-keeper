@@ -1,56 +1,53 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
-
-
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import anime from "animejs";
 
 export default function BasicCard(props) {
+  const noteStyle = {
+    maxWidth: "20vw",
+    minWidth: "200px",
+    backdropFilter: "blur(10px) saturate(180%)",
+    webkitBackdropFilter: "blur(10px) saturate(180%)",
+    backgroundColor: "rgba(17, 25, 40, 0.75)",
+    borderRadius: "10px",
+    border: "1px solid rgba(255, 255, 255, 0.125)",
+    margin: "2% 2%",
+    color: "white",
+    opacity: 0,
+    position: "absolute",
+    height: "fit-content",
+    top: props.top,
+  };
 
-    const noteStyle = {
-        maxWidth: '30vw',
-        minWidth: '15vw',
-        backdropFilter: "blur(10px) saturate(180%)",
-        webkitBackdropFilter: "blur(10px) saturate(180%)",
-        backgroundColor: "rgba(17, 25, 40, 0.75)",
-        borderRadius: "10px",
-        border: "1px solid rgba(255, 255, 255, 0.125)",
-        margin: "5% 0%",
-        position: "absolute",
-        left: props.lpos,
-        right: props.rpos,
-        color: 'white',
-    }
+  anime({
+    targets: ".Card",
+    opacity: 1,
+    easing: "linear",
+    translateX: function (card, i, l) {
+      if (i === 0) return "-25vw";
+      else if (i === 2) return "25vw";
+      else return "0";
+    },
+    translateY: function (card, i, l) {
+      return i === 1 ? "50%" : "0";
+    },
+  });
 
   return (
-    <Card  sx={noteStyle}>
+    <Card className="Card" sx={noteStyle}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="primary" gutterBottom>
-          Word of the Day
+          {props.tag}
         </Typography>
         <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
+          {props.title}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="secondary">
-          adjective
+          {props.author}
         </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
+        <Typography variant="body2">{props.content}</Typography>
       </CardContent>
     </Card>
   );
