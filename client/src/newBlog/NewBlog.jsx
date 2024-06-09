@@ -2,19 +2,144 @@ import React from "react";
 import ResponsiveAppBar from "../components/Header";
 import "./newBlog.css";
 import Footer from "../components/Footer";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import { Grid } from "@mui/material";
+import { display, grid, height, margin, positions, width } from "@mui/system";
 
 export default function NewBlog() {
+  const gridStyle = {
+    position: "absolute",
+    top: "30vh",
+    backgroundColor: "white",
+    height: "60vh",
+    width: "50%",
+  };
+
+  const styleTitle = {
+    position: "absolute",
+    top: "10vh",
+    width: "50vw",
+    "& .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root": {
+      color: "white",
+      fontSize: "1em",
+    },
+    "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root, .css-o943dk-MuiFormLabel-root-MuiInputLabel-root":
+      {
+        color: "violet",
+        fontSize: "1.3em",
+      },
+    "& .MuiInputBase-root": {
+      backdropFilter: "blur(10px) saturate(180%)",
+      webkitBackdropFilter: "blur(10px) saturate(180%)",
+      backgroundColor: "rgba(17, 25, 40, 0.75)",
+      border: "1px solid rgba( 255, 255, 255, 0.18 )",
+      height: "10vh",
+    },
+    "& .css-10botns-MuiInputBase-input-MuiFilledInput-input ": {
+      color: "white",
+      fontSize: "1em",
+    },
+    zIndex: 1000,
+  };
+
+  const otherStyle = {
+    '& .css-phksla-MuiInputBase-root-MuiFilledInput-root': {
+      width: "100%",
+    }
+  }
+
   return (
-    <div>
+    <div className="NewBlog">
       <ResponsiveAppBar />
       <TextField
-          id="outlined-multiline-flexible"
-          label="Multiline"
-          multiline
-          maxRows={4}
-        />
+        sx={styleTitle}
+        fullWidth
+        label="Title"
+        id="fullWidth"
+        margin="normal"
+        size="standard"
+        variant="filled"
+      />
+      <Grid
+        sx={gridStyle}
+        container
+        spacing={{ xs: 1, sm: 1, md: 3 }}
+        columns={{ xs: 1, sm: 2, md: 2 }}
+        direction="rows"
+        justifyContent="space-between"
+      >
+        <Grid
+          container
+          spacing={{ xs: 1, sm: 1, md: 2 }}
+          columns={{ xs: 1, sm: 2, md: 2 }}
+          // rowSpacing={{xs: 1, sm: 2, md: 10 }}
+          // justifyContent="start"
+          // alignItems="baseline"
+          direction="rows"
+          md={1}
+        >
+          <Grid
+            alignContent="center"
+            className="gridItem"
+            item
+            xs={1}
+            sm={2}
+            md={2}
+          >
+            <div className="blue">
+              <TextField
+                id="filled-textarea"
+                label="Summary"
+                placeholder="Placeholder"
+                multiline
+                variant="filled"
+              />
+            </div>
+          </Grid>
+          <Grid className="gridItem" item xs={1} sm={1} md={1}>
+            <div className="blue">
+              <TextField
+                id="filled-textarea"
+                label="Tag"
+                placeholder="Placeholder"
+                multiline
+                variant="filled"
+              />
+            </div>
+          </Grid>
+          <Grid className="gridItem" item xs={2} sm={1} md={1}>
+            <div className="blue">
+              <TextField
+                id="filled-textarea"
+                label="Author"
+                placeholder="Placeholder"
+                multiline
+                variant="filled"
+              />
+            </div>
+          </Grid>
+        </Grid>
+        <Grid
+          alignItems="center"
+          justifyContent="center"
+          justifyItems="center"
+          item
+          xs={1}
+          md={1}
+          sx={{ width: "100%", height: "100%", backgroundColor: 'red'}}
+        >
+          <div className="blue">
+            <TextField
+              // sx={{width: '100%', backgroundColor: 'white'}}
+              id="filled-content"
+              label="Content"
+              placeholder="Write here..."
+              multiline
+              variant="filled"
+            />
+          </div>
+        </Grid>
+      </Grid>
       <div className="svg">
         <svg
           fill="#000000"
