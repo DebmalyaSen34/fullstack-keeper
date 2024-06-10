@@ -6,8 +6,11 @@ import welcomeToBatBlog from "../WelcomeToBatBlog";
 import { v4 as uuidv4 } from "uuid";
 import OutlinedButtons from "./Button";
 import Footer from "./Footer";
+import anime from "animejs";
+import { useEffect } from "react";
 
 export default function Home() {
+
   return (
     <div>
       <ResponsiveAppBar />
@@ -25,7 +28,7 @@ export default function Home() {
               id={myuuid}
             />
           );
-        })}
+          })}
       </div>
       <OutlinedButtons />
       <Footer />

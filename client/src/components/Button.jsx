@@ -5,13 +5,19 @@ import anime from 'animejs';
 
 export default function BasicButtons() {
 
-    anime({
-        targets: ".stack",
-        opacity: 1,
-        delay: 500,
-        duration: 1000,
-        easing: "linear"
-    });
+    function animateButton(){
+        anime({
+            targets: ".stack",
+            opacity: 1,
+            delay: 500,
+            duration: 1000,
+            easing: "linear"
+        });
+    }
+
+    React.useEffect(() => {
+        animateButton();
+    }, []);
 
     return (
         <Stack className = "stack" alignItems="center" sx={{opacity: 0}}>

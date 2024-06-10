@@ -21,19 +21,25 @@ export default function BasicCard(props) {
     top: props.top,
   };
 
-  anime({
-    targets: ".Card",
-    opacity: 1,
-    easing: "linear",
-    translateX: function (card, i, l) {
-      if (i === 0) return "-25vw";
-      else if (i === 2) return "25vw";
-      else return "0";
-    },
-    translateY: function (card, i, l) {
-      return i === 1 ? "50%" : "0";
-    },
-  });
+  function animateSmallNote(){
+    anime({
+      targets: ".Card",
+      opacity: 1,
+      easing: "linear",
+      translateX: function (card, i, l) {
+        if (i === 0) return "-25vw";
+        else if (i === 2) return "25vw";
+        else return "0";
+      },
+      translateY: function (card, i, l) {
+        return i === 1 ? "50%" : "0";
+      },
+    });
+  }
+
+  React.useEffect(() => {
+    animateSmallNote();
+  }, []);
 
   return (
     <Card className="Card" sx={noteStyle}>
