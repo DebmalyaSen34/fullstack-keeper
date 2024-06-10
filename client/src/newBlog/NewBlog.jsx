@@ -5,12 +5,13 @@ import Footer from "../components/Footer";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
 import { display, grid, height, margin, positions, width } from "@mui/system";
+import zIndex from "@mui/material/styles/zIndex";
+import anime from "animejs";
 
 export default function NewBlog() {
   const gridStyle = {
     position: "absolute",
     top: "30vh",
-    backgroundColor: "white",
     height: "60vh",
     width: "50%",
   };
@@ -23,7 +24,7 @@ export default function NewBlog() {
       color: "white",
       fontSize: "1em",
     },
-    "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root, .css-o943dk-MuiFormLabel-root-MuiInputLabel-root":
+    "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root, & .css-o943dk-MuiFormLabel-root-MuiInputLabel-root":
       {
         color: "violet",
         fontSize: "1.3em",
@@ -35,23 +36,85 @@ export default function NewBlog() {
       border: "1px solid rgba( 255, 255, 255, 0.18 )",
       height: "10vh",
     },
-    "& .css-10botns-MuiInputBase-input-MuiFilledInput-input ": {
+    "& .css-10botns-MuiInputBase-input-MuiFilledInput-input": {
       color: "white",
       fontSize: "1em",
     },
     zIndex: 1000,
+    opacity: 0
   };
 
   const otherStyle = {
-    '& .css-phksla-MuiInputBase-root-MuiFilledInput-root': {
-      width: "100%",
-    }
+    zIndex: 1000,
+    "& .css-10ukbsc-MuiInputBase-root-MuiFilledInput-root, & .css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root":
+      {
+        backdropFilter: "blur(10px) saturate(180%)",
+        webkitBackdropFilter: "blur(10px) saturate(180%)",
+        backgroundColor: "rgba(17, 25, 40, 0.75)",
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
+      },
+    "& .css-u17hlt-MuiFormControl-root-MuiTextField-root": {
+      color: "white",
+    },
+    "& .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root, & .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused,  & .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root":
+      {
+        color: "violet",
+      },
+    "& .css-7209ej-MuiInputBase-input-MuiFilledInput-input": {
+      color: "white",
+    },
+    "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root": {
+      color: "pink",
+    },
+    "& .css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input": {
+      color: "blanchedalmond",
+    },
+    "& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root": {
+      color: "powderblue",
+    },
+  };
+
+  const contentStyle = {
+    zIndex: 1000,
+    "& .css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root": {
+      backdropFilter: "blur(10px) saturate(180%)",
+      webkitBackdropFilter: "blur(10px) saturate(180%)",
+      backgroundColor: "rgba(17, 25, 40, 0.75)",
+      border: "1px solid rgba( 255, 255, 255, 0.18 )",
+    },
+    "& .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root, & .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused,  & .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root":
+      {
+        color: "violet",
+      },
+    "& .css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input": {
+      color: "white",
+    },
+    "& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root": {
+      color: "pink",
+    },
+  };
+
+  function contentAnimation() {
+    anime({
+      targets: ".gridContents",
+      opacity: 1,
+      duration: 500,
+      delay: function (grid, i, l){
+        return 100*i;
+      },
+      easing: "easeInOutQuad",
+    });
   }
+
+  React.useEffect(() => {
+    contentAnimation();
+  }, []);
 
   return (
     <div className="NewBlog">
       <ResponsiveAppBar />
       <TextField
+        className="gridContents"
         sx={styleTitle}
         fullWidth
         label="Title"
@@ -69,75 +132,93 @@ export default function NewBlog() {
         justifyContent="space-between"
       >
         <Grid
+          sx={{ padding: "3% 5% 0 3%" }}
           container
-          spacing={{ xs: 1, sm: 1, md: 2 }}
+          spacing={{ xs: 1, sm: 1, md: 1 }}
           columns={{ xs: 1, sm: 2, md: 2 }}
-          // rowSpacing={{xs: 1, sm: 2, md: 10 }}
-          // justifyContent="start"
-          // alignItems="baseline"
           direction="rows"
           md={1}
         >
           <Grid
+            className="gridContents"
+            sx={{ height: "fit-content", opacity: '0' }}
             alignContent="center"
-            className="gridItem"
             item
             xs={1}
             sm={2}
             md={2}
           >
-            <div className="blue">
-              <TextField
-                id="filled-textarea"
-                label="Summary"
-                placeholder="Placeholder"
-                multiline
-                variant="filled"
-              />
-            </div>
+            <TextField
+              sx={otherStyle}
+              margin="none"
+              id="filled-textarea"
+              label="Summary"
+              maxRows="5"
+              placeholder="Short summary..."
+              multiline
+              variant="filled"
+              fullWidth
+            />
           </Grid>
-          <Grid className="gridItem" item xs={1} sm={1} md={1}>
-            <div className="blue">
-              <TextField
-                id="filled-textarea"
-                label="Tag"
-                placeholder="Placeholder"
-                multiline
-                variant="filled"
-              />
-            </div>
+          <Grid
+            className="gridContents"
+            sx={{ height: "fit-content", opacity: "0"}}
+            item
+            xs={1}
+            sm={1}
+            md={1}
+          >
+            <TextField
+              sx={otherStyle}
+              id="filled-textarea"
+              label="Tag"
+              placeholder="Tags..."
+              multiline
+              fullWidth
+              variant="outlined"
+            />
           </Grid>
-          <Grid className="gridItem" item xs={2} sm={1} md={1}>
-            <div className="blue">
-              <TextField
-                id="filled-textarea"
-                label="Author"
-                placeholder="Placeholder"
-                multiline
-                variant="filled"
-              />
-            </div>
+          <Grid
+            className="gridContents"
+            sx={{ height: "fit-content", opacity: "0"}}
+            item
+            xs={2}
+            sm={1}
+            md={1}
+          >
+            <TextField
+              sx={otherStyle}
+              id="filled-textarea"
+              label="Author"
+              placeholder="Your name..."
+              multiline
+              variant="outlined"
+              fullWidth
+            />
           </Grid>
         </Grid>
         <Grid
+          className="gridContents"
+          id="filled-content"
           alignItems="center"
           justifyContent="center"
           justifyItems="center"
           item
           xs={1}
+          sm={2}
           md={1}
-          sx={{ width: "100%", height: "100%", backgroundColor: 'red'}}
+          sx={{ width: "100%", height: "100%", padding: "0 2% 0 5%", opacity: "0"}}
         >
-          <div className="blue">
-            <TextField
-              // sx={{width: '100%', backgroundColor: 'white'}}
-              id="filled-content"
-              label="Content"
-              placeholder="Write here..."
-              multiline
-              variant="filled"
-            />
-          </div>
+          <TextField
+            sx={contentStyle}
+            label="Content"
+            placeholder="Write here..."
+            multiline
+            variant="outlined"
+            rows="15"
+            fullWidth
+            onClick={contentAnimation}
+          />
         </Grid>
       </Grid>
       <div className="svg">
