@@ -10,14 +10,13 @@ export default function InputForm(props) {
             className={props.className}
             sx={props.gridStyle}
             alignContent={props.align}
-            // justifyContent={props.justifyContent}
-            // justifyItems={props.justifyItems}
             xs={props.xs}
             sm={props.sm}
             md={props.md}
             item
         >
             <TextField
+                onChange={props.handleChange}
                 sx={props.styling}
                 label={props.label}
                 rows={props.rows}
@@ -26,6 +25,8 @@ export default function InputForm(props) {
                 multiline
                 variant={props.variant}
                 fullWidth={props.fullWidth}
+                value={props.value}
+                name={props.name}
             />
         </Grid>
     );

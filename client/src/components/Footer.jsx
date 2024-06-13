@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 function Footer() {
     return (
-        <footer>
+        <footer style={{zIndex: 4}}>
             <Typography className="footerContent" variant="caption">
                 Developed and maintained by <br></br> Debmalya Sen
             </Typography>

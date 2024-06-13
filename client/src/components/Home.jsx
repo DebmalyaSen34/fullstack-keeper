@@ -8,6 +8,7 @@ import OutlinedButtons from "./Button";
 import Footer from "./Footer";
 import anime from "animejs";
 import { useEffect } from "react";
+import BasicButtons from "./Button";
 
 export default function Home() {
 
@@ -30,7 +31,7 @@ export default function Home() {
           );
           })}
       </div>
-      <OutlinedButtons />
+      <BasicButtons text="Get started" animation={true} />
       <Footer />
     </div>
   );

@@ -11,6 +11,7 @@
   position: relative;
   left: -10vw;
   overflow: hidden;
+  /* unhide this after searching for a better svg background  */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,9 +24,10 @@
   height: 100vh;
 }
 
-.svg svg{
+.batman{
   position: relative;
-  left: -10vw;
+  left: -75vw;
+  opacity: 0;
   width: 50vw;
   height: 50vh;
   transform: scale(5);
