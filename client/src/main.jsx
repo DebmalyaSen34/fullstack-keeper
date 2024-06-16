@@ -1,5 +1,6 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import Home from "./components/Home";
+import GetBlogs from "./getBlogs/getBlogs";
 import { createRoot } from "react-dom/client";
 import NewBlog from "./newBlog/NewBlog";
 import {
@@ -13,11 +14,17 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: "/Yours",
+    element: <GetBlogs />,
+  },
+  {
     path: "/New",
     element: <NewBlog />,
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>
 );

@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ResponsiveAppBar from "./Header";
 import SmallNote from "./SmallNote";
-import "./Home.css";
+import styles from './Home.module.css'
 import welcomeToBatBlog from "../WelcomeToBatBlog";
 import { v4 as uuidv4 } from "uuid";
-import OutlinedButtons from "./Button";
 import Footer from "./Footer";
-import anime from "animejs";
-import { useEffect } from "react";
 import BasicButtons from "./Button";
 
 export default function Home() {
 
+  useEffect(() => {
+    return () => { 
+      document.body.style.backgroundColor = '#0f0c29';
+      document.body.style.background = '#-webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29)';
+      document.body.style.background = '#linear-gradient(to left, #24243e, #302b63, #0f0c29)';
+    }
+  }, []);
+
   return (
     <div>
       <ResponsiveAppBar />
-      <div className="noteDiv">
+      <div className={styles.noteDiv}>
         {welcomeToBatBlog.map((text, idx) => {
           let myuuid = uuidv4();
           return (
@@ -27,11 +32,14 @@ export default function Home() {
               tag={text.tag}
               author={text.author}
               id={myuuid}
+              animate={true}
             />
           );
-          })}
+        })}
       </div>
-      <BasicButtons text="Get started" animation={true} />
+      <BasicButtons
+      style={{position: 'relative', top: '50vh'}}
+      text="Get started" animation={true} />
       <Footer />
     </div>
   );

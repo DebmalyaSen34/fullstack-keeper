@@ -4,24 +4,12 @@
     box-sizing: border-box;
   }
 
-.svg{
-
-  width: 100vw;
-  height: 90vh;
-  position: relative;
-  left: -10vw;
-  overflow: hidden;
-  /* unhide this after searching for a better svg background  */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  z-index: -1;
-}
-
 .NewBlog{
-  display: grid;
-  place-items: center;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-between;
+  height: 100%;
 }
 
 .batman{
@@ -32,3 +20,33 @@
   height: 50vh;
   transform: scale(5);
 }
+
+/* .gridContents{
+  opacity: 0;
+  animation: appear 0.5s ease-in alternate ;
+} */
+/* 
+@keyframes appear{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.gridContents:nth-child(1){
+  animation-delay: 0.5s;
+}
+.gridContents:nth-child(2){
+  animation-delay: 0.4s;
+}
+.gridContents:nth-child(3){
+  animation-delay: 0.6s;
+}
+.gridContents:nth-child(4){
+  animation-delay: 0.8s;
+}
+.gridContents:nth-child(5){
+  animation-delay: 1s;
+} */

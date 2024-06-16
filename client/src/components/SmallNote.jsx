@@ -15,8 +15,8 @@ export default function BasicCard(props) {
     border: "1px solid rgba(255, 255, 255, 0.125)",
     margin: "2% 2%",
     color: "white",
-    opacity: 0,
-    position: "absolute",
+    opacity: props.animate ? "0" : "1",
+    position: props.animate ? "absolute" : "relative",
     height: "fit-content",
     top: props.top,
   };
@@ -38,7 +38,9 @@ export default function BasicCard(props) {
   }
 
   React.useEffect(() => {
-    animateSmallNote();
+    if(props.animate){
+      animateSmallNote();
+    }
   }, []);
 
   return (

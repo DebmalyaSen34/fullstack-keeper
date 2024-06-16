@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import blogModel from './model/blogs'
 
 const app = express();
 
@@ -12,11 +11,20 @@ app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/blogs');
 
+const blogSchema = new mongoose.Schema({
+    title: String,
+    content: String,
+    tag: String,
+    author: String,
+    summary: String
+});
 
+const blogModel = mongoose.model("users", blogSchema);
 
-app.get('/api', (req, res) => {
-    console.log('ag');
-    res.json({"users": ['user1', 'user2', 'user3']});
+app.get('/Yours', (req, res) => {
+    blogModel.find({})
+    .then(blogs => res.json(blogs))
+    .catch(err => res.json(err))
 });
 
 app.post('/submitBlog', async(req, res) => {

@@ -4,14 +4,15 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedIn from "@mui/icons-material/LinkedIn";
 import Typography from "@mui/material/Typography";
+import styles from './Home.module.css';
 
 function Footer() {
     return (
-        <footer style={{zIndex: 4}}>
-            <Typography className="footerContent" variant="caption">
+        <footer className={styles.Footer} style={{zIndex: 4}}>
+            <Typography className={styles.footerContent} variant="caption">
                 Developed and maintained by <br></br> Debmalya Sen
             </Typography>
-            <div className="socialMedia">
+            <div className={styles.socialMedia}>
                 <InstagramIcon sx={{ color: "pink", fontSize: "30px" }} />
                 <FacebookIcon sx={{ color: "blue", fontSize: "30px" }} />
                 <GitHubIcon sx={{ color: "grey", fontSize: "30px" }} />
