@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.boxStyle {
+    min-width: 80vw;
+    width: 30vw;
+    height: 50vh;
+    display: grid;
+    place-content: center;
+    gap: 30%;
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 20px;
+    margin: 20% 0;
+}
+
+@media (min-width: 950px) {
+    .boxStyle {
+        width: 40vw;
+        min-width: 0;
+    }
+}
+
+.divStyle {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border: 1px solid white;
+    display: grid;
+    place-content: center;
+    background-color: #ffffff00;
+}
+
+.divBigScreen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.boxBigScreen {
+    display: grid;
+    place-content: center;
+    row-gap: 50px;
+    width: 40vw;
+    height: 50%;
+    /* background-color: red; */
+    color: white;
+}
+
+.boxBigScreen h1{
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5em;
+}

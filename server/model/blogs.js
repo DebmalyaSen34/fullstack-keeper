@@ -5,7 +5,8 @@ const blogSchema = new mongoose.Schema({
     content: String,
     tag: String,
     author: String,
-    summary: String
+    summary: String,
+    time: {type: Date, default: Date.now()},
 });
 
 const blogModel = mongoose.model("users", blogSchema);

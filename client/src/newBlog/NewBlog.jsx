@@ -7,6 +7,7 @@ import { Grid } from "@mui/material";
 import anime from "animejs";
 import InputForm from "./InputForm";
 import BasicButtons from "../components/Button";
+import axios from "axios";
 
 export default function NewBlog(props) {
 
@@ -29,18 +30,25 @@ export default function NewBlog(props) {
     })
   }, []);
 
-  const onSubmit = async(event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
 
-    const res = await fetch('http://localhost:5070/submitBlog', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
+    axios.post('http://localhost:5000/submitBlog', formData, {
+      withCredentials: true
     })
-    const result = await res.json()
-    console.log(result)
+      .then(result => {
+        if (result.status === 200) {
+          console.log(result);
+          console.log('Data successfully submitted!')
+        }
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 401) {
+          console.log(error.response.data.message);
+        } else {
+          console.log(error.message);
+        }
+      })
 
     setFormData({
       title: "",
@@ -265,11 +273,11 @@ export default function NewBlog(props) {
             value={formData.content}
           />
           <BasicButtons
-                style={{left: '50%', width: 'fit-content', position: 'relative', bottom: "-40px"}}
-                animation={true}
-                text="Submit"
-                ClickOn={onSubmit}
-              />
+            style={{ left: '50%', width: 'fit-content', position: 'relative', bottom: "-40px" }}
+            animation={true}
+            text="Submit"
+            ClickOn={onSubmit}
+          />
         </Grid>
         <Footer />
       </div>

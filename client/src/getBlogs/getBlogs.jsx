@@ -21,7 +21,7 @@ export default function GetBlogs() {
   const [blogs, setBlogs] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get('http://localhost:5070/Yours')
+    axios.get('http://localhost:5000/yourBlogs')
     .then(result => setBlogs(result.data))
     .catch(err => console.log(err))
   }, []);

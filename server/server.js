@@ -1,27 +1,24 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import blogModel from './model/blogs.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-const port = 5070;
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/blogs');
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
-const blogSchema = new mongoose.Schema({
-    title: String,
-    content: String,
-    tag: String,
-    author: String,
-    summary: String
-});
+mongoose.connect(process.env.DB_URL);
 
-const blogModel = mongoose.model("users", blogSchema);
-
-app.get('/Yours', (req, res) => {
+app.get('/yourBlogs', (req, res) => {
     blogModel.find({})
     .then(blogs => res.json(blogs))
     .catch(err => res.json(err))

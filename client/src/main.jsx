@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import GetBlogs from "./getBlogs/getBlogs";
 import { createRoot } from "react-dom/client";
 import NewBlog from "./newBlog/NewBlog";
+import Login from "./Login/Login";
 import {
   createBrowserRouter,
   RouterProvider
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/New",
     element: <NewBlog />,
   },
+  {
+    path: "/login",
+    element: <Login />,
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
