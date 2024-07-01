@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import blogModel from './model/blogs.js';
+import restaurantModel from './model/restaurants.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -23,6 +24,24 @@ app.get('/yourBlogs', (req, res) => {
     .then(blogs => res.json(blogs))
     .catch(err => res.json(err))
 });
+
+app.get('/getRestaurants', async (req, res) => {
+    try{
+        const restaurants = await restaurantModel.find({});
+        res.json(restaurants);
+    }catch(err){
+        res.status(500).json(err);
+    }
+});
+
+app.get('/restaurants/:id', async (req, res) => {
+    try{
+        const restaurant = await restaurantModel.findById(req.params.id);
+        res.json(restaurant);
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
 
 app.post('/submitBlog', async(req, res) => {
     console.log(req.body)

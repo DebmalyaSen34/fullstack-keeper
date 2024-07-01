@@ -2,8 +2,11 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import anime from 'animejs';
+import { useNavigate } from 'react-router-dom';
 
 export default function BasicButtons(props) {
+
+    const navigate = useNavigate();
 
     function animateButton(){
         anime({
@@ -21,9 +24,13 @@ export default function BasicButtons(props) {
         }, []);
     }
 
+    const redirectLogin = () => {
+        navigate(props.redirect);
+    }
+
     return (
         <Stack className = "stack" alignItems="center" sx={{...props.style, opacity: '0'}}>
-        <Button onClick={props.ClickOn} variant="contained">{props.text}</Button>
+        <Button onClick={redirectLogin} variant="contained">{props.text}</Button>
         </Stack>
     );
 }

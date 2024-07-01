@@ -9,6 +9,7 @@ import BasicButtons from "./Button";
 
 export default function Home() {
 
+
   useEffect(() => {
     return () => { 
       document.body.style.backgroundColor = '#0f0c29';
@@ -39,7 +40,7 @@ export default function Home() {
       </div>
       <BasicButtons
       style={{position: 'relative', top: '50vh'}}
-      text="Get started" animation={true} />
+      text="Get started" animation={true} redirect="/login" />
       <Footer />
     </div>
   );
